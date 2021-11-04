@@ -21,6 +21,9 @@ const handleUserInput = function (data) {
   if (data[0] === 'd') {
     connection.write("Move: right");
   }
+  if (data[0] === 'l') {
+    connection.write("Say: hhello");
+  }
   if (data === '\u0003') {
     console.log()
     process.exit();
