@@ -7,13 +7,13 @@ const connect = function () {
 
   conn.on("connect", () => {
     conn.write("Name: SNK");
-    setInterval(() => { 
-                  conn.write("Move: up")
-                },200);
-    setInterval(() => { 
-                  conn.write("Move: up")
-                },200);                
-  });
+  //   setInterval(() => { 
+  //                 conn.write("Move: up")
+  //               },200);
+  //   setInterval(() => { 
+  //                 conn.write("Move: up")
+  //               },200);                
+   });
   conn.on('data', (data) => {
     console.log(data);
   });

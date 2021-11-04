@@ -1,45 +1,31 @@
-// const setupInput = function () {
-//   const stdin = process.stdin;
-//   stdin.setRawMode(true);
-//   stdin.setEncoding("utf8");
-//   stdin.resume();
-//   stdin.on('data', handleUserInput);
-//   return stdin;
-// };
-// const handleUserInput = function(data){
-//   setupInput().on(data,(key) => {
-//     console.log
-//     if (key === '\u0003') {
-//       stdin.setRawMode(false);
-//       process.exit()
-//     }
-//   });
-  
-// };
-
-// setupInput();
-
-const net = require('net');
-
-const setupInput = function () {
+let connection;
+const setupInput = function (conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');
   stdin.resume();
-
-  stdin.on("data", handleUserInput);
   return stdin;
 }
 
-const handleUserInput = function () {
-  // on any input from stdin (standard input), output a "." to stdout
-  const stdin = process.stdin;
-  stdin.on('data', (key) => {
-  process.stdout.write('.');
-  if (key === '\u0003') {
+const handleUserInput = function (data) {
+  if (data[0] === 'w') {
+    connection.write("Move: up");
+  }  
+  if (data[0] === 'a') {
+    connection.write("Move: left");
+  }  
+  if (data[0] === 's') {
+    connection.write("Move: down");
+  }  
+  if (data[0] === 'd') {
+    connection.write("Move: right");
+  }
+  if (data === '\u0003') {
+    console.log()
     process.exit();
   }
-});
 };
 
+setupInput().on("data", handleUserInput);
 module.exports = { setupInput }; 
